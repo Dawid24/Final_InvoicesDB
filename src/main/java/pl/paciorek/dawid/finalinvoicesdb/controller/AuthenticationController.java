@@ -1,14 +1,23 @@
 package pl.paciorek.dawid.finalinvoicesdb.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
+import pl.paciorek.dawid.finalinvoicesdb.service.UserService;
+
+import javax.validation.Valid;
 
 @Controller
 public class AuthenticationController {
+
+    //@Autowired
+    //UserService userService;
 
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -32,4 +41,24 @@ public class AuthenticationController {
         modelAndView.setViewName("home"); // resources/template/home.html
         return modelAndView;
     }
+
+    /*@RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.addObject("successMessage", "Please correct the errors in form!");
+            modelMap.addAttribute("bindingResult", bindingResult);
+
+        } else if (userService.isUserAlreadyPresent(user)){
+            modelAndView.addObject("successMessage", "User already exists!");
+        } else {
+            userService.saveUser(user);
+            modelAndView.addObject("successMessage", "You have been registered successfully!");
+        }
+        modelAndView.addObject("user", new User());
+        modelAndView.setViewName("register");
+        return modelAndView;
+    }*/
+
+
 }
