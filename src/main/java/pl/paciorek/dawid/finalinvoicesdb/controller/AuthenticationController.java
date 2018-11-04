@@ -2,6 +2,7 @@ package pl.paciorek.dawid.finalinvoicesdb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,8 @@ import javax.validation.Valid;
 @Controller
 public class AuthenticationController {
 
-    //@Autowired
-    //UserService userService;
+    @Autowired
+    UserService userService;
 
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -38,11 +39,11 @@ public class AuthenticationController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home"); // resources/template/home.html
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 
-    /*@RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
@@ -58,7 +59,7 @@ public class AuthenticationController {
         modelAndView.addObject("user", new User());
         modelAndView.setViewName("register");
         return modelAndView;
-    }*/
+    }
 
 
 }
