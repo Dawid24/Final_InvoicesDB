@@ -30,8 +30,8 @@ public class AuthenticationController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
-        // User user = new User();
-        // modelAndView.addObject("user", user);
+        User user = new User();
+        modelAndView.addObject("user", user);
         modelAndView.setViewName("register");
         return modelAndView;
     }
@@ -40,6 +40,13 @@ public class AuthenticationController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ModelAndView adminHome() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin");
         return modelAndView;
     }
 
