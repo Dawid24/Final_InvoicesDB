@@ -1,17 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <title>Index Page</title>
+    <style>
+        table, th, td {
+            border: 1px solid #403866;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+        th {
+            font-weight: normal;
+        }
+    </style>
 
 </head>
 <body>
 <h1 style="text-align: center; color: #403866" th:text="${greeting}"></h1>
+<p style="text-align: center; color: #827ffe;">To log in or register, click <a
+        style="color: #403866; text-decoration: none;" th:href="@{/login}">here</a>.</p>
 
-<p style="text-align: center; color: #827ffe;">To log in or register, click <a style="color: #403866; text-decoration: none;" th:href="@{/login}">here</a>.</p>
+<div class="container">
+    <table style="width: 100%;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                <tr>
+                    <th>#</th>
+                    <th>Model</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                <tr>
+                    <th style="background-color: #403866; color: white">01</th>
+                    <th>Apple iPhone 6s</th>
+                    <th>Renewed products look and work like new. These pre-owned products have been inspected and tested by Amazon-qualified suppliers, which typically perform a full diagnostic test, replacement of any defective parts, and a thorough cleaning process.</th>
+                    <th style="text-align: center; color: #403866">1700</th>
+                    <th style="text-align: center; color: #403866">50</th>
+                </tr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                <tr>
+                    <th style="background-color: #403866; color: white">02</th>
+                    <th>Tablet LG</th>
+                    <th>Discover the full line of LG tablets and easily compare the specs and features which matter most to you, from size to connectivity options.</th>
+                    <th style="text-align: center; color: #403866">1300</th>
+                    <th style="text-align: center; color: #403866">19</th>
+                </tr>
+            </div>
+        </div>
+    </table>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
