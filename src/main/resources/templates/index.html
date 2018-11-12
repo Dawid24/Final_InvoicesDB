@@ -25,47 +25,28 @@
 </head>
 <body>
 <h1 style="text-align: center; color: #403866" th:text="${greeting}"></h1>
-<p style="text-align: center; color: #827ffe;">To log in or register, click <a
-        style="color: #403866; text-decoration: none;" th:href="@{/login}">here</a>.</p>
+<p style="text-align: center; color: #ff253a;">To log in or register, click <a
+        style="color: #403866; text-decoration: none;" th:href="@{/login}">here.</a></p>
 
-<div class="container">
-    <table style="width: 100%;">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
-                <tr>
-                    <th>#</th>
-                    <th>Model</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
+<div style="width: 100%; margin: 0 auto;">
+    <div style="width: 100%; min-height: 5vh; display: -webkit-box; display: -webkit-flex;  display: -moz-box; display: -ms-flexbox; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; padding: 15px; background-size: cover; background: no-repeat center;">
+        <div style="width: 250px; border-radius: 130px; position: relative; padding-top: 10px; padding-bottom: 5px; border: 3px solid #827ffe; background-color: ghostwhite; border-right-style: outset;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                        <ul style="color: #403866; font-weight: normal">
+                            <li style="font-size: 46px"></li>
+                            <li style="font-size: 34px; color: #827ffe"></li>
+                            <li style="font-size: 40px"></li>
+                            <li style="font-size: 26px; color: #827ffe"></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
-                <tr>
-                    <th style="background-color: #403866; color: white">01</th>
-                    <th>Apple iPhone 6s</th>
-                    <th>Renewed products look and work like new. These pre-owned products have been inspected and tested by Amazon-qualified suppliers, which typically perform a full diagnostic test, replacement of any defective parts, and a thorough cleaning process.</th>
-                    <th style="text-align: center; color: #403866">1700</th>
-                    <th style="text-align: center; color: #403866">50</th>
-                </tr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
-                <tr>
-                    <th style="background-color: #403866; color: white">02</th>
-                    <th>Tablet LG</th>
-                    <th>Discover the full line of LG tablets and easily compare the specs and features which matter most to you, from size to connectivity options.</th>
-                    <th style="text-align: center; color: #403866">1300</th>
-                    <th style="text-align: center; color: #403866">19</th>
-                </tr>
-            </div>
-        </div>
-    </table>
+    </div>
 </div>
-
+<h5 style="text-align: center; color: #403866"><p class="far fa-question-circle"> Our company has been successfully operating in the trade industry for 5 years.</p></h5>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

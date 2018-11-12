@@ -12,13 +12,28 @@
 <body>
 
 <h1 style="text-align: center; color: #403866">Registered users</h1>
-<p style="text-align: center;"><a style="color: salmon; text-decoration: none;" th:href="@{/admin}">Back</a>.</p>
 
-<div style="text-align: center; color: #827ffe" th:each="user : ${users}">
-    <div th:text="${'id: ' + user.id + ' ' + user.name + ' ' + user.lastName + ', email: ' + user.email}"></div>
+    <!--<a style="color: salmon; text-decoration: none;" th:href="@{/admin}">Back</a>--></p>
+
+<div style="width: 100%; margin: 0 auto;">
+    <div style="width: 100%; min-height: 5vh; display: -webkit-box; display: -webkit-flex;  display: -moz-box; display: -ms-flexbox; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; padding: 15px; background-size: cover; background: no-repeat center;">
+        <div style="width: 390px; border-radius: 5px; position: relative; padding-top: 10px; padding-bottom: 20px; border: 1px solid darkcyan; background-color: ghostwhite;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                        <div style="text-align: left; color: #403866" th:each="user : ${users}">
+                            <div th:text="${user.id + ' ' + user.name + ', login: ' + user.email}">
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="text-align: center;"><a class="btn btn-info" th:href="@{/admin}" role="button">Back</a>
+        <button type="button" class="btn btn-danger">Danger</button>
 </div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
