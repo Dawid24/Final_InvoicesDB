@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
+import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
 import pl.paciorek.dawid.finalinvoicesdb.service.UserService;
 
 import javax.validation.Valid;
@@ -19,6 +20,9 @@ public class AuthenticationController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public ModelAndView login() {
@@ -40,6 +44,7 @@ public class AuthenticationController {
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        modelAndView.addObject("products", productRepository.findAll());
         return modelAndView;
     }
 

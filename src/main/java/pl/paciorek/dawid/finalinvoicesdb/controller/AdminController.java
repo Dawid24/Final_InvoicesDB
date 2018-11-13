@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paciorek.dawid.finalinvoicesdb.model.Product;
+import pl.paciorek.dawid.finalinvoicesdb.model.User;
 import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.UserRepository;
 
@@ -39,5 +40,13 @@ public class AdminController {
         Product product = new Product(name, price, quantity);
         productRepository.save(product);
         return "admin";
+    }
+
+    @PostMapping("/delete")
+    public String deleteUser(@RequestParam(value = "id") int id, Model model) {
+        User deleteUser = userRepository.getOne(id);
+        userRepository.delete(deleteUser);
+        model.addAttribute("deleteUser", "The user has been successfully deleted.");
+        return "users";
     }
 }
