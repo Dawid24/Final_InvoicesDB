@@ -6,5 +6,6 @@ import pl.paciorek.dawid.finalinvoicesdb.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+    User findUserByName(String name);
 
 }

@@ -1,9 +1,13 @@
 package pl.paciorek.dawid.finalinvoicesdb.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "product")
 public class Product {
 
@@ -20,15 +24,29 @@ public class Product {
     @Column(name = "price")
     private int price;
 
-    @NotNull(message = "Quantity can not be empty")
-    @Column(name = "quantity")
-    private int quantity;
-
-    public Product(@NotNull(message = "Name can not be empty") String name, @NotNull(message = "Price can not be empty") int price, @NotNull(message = "Quantity can not be empty") int quantity) {
+    public Product(@NotNull(message = "Name can not be empty") String name, @NotNull(message = "Price can not be empty") int price, User user) {
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.user = user;
     }
+
+    public Product(@NotNull(message = "Name can not be empty") String name, @NotNull(message = "Price can not be empty") int price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public Product() {
 
@@ -58,11 +76,13 @@ public class Product {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", user=" + user +
+                '}';
     }
 }

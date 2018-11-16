@@ -2,18 +2,11 @@ package pl.paciorek.dawid.finalinvoicesdb.model;
 
 import org.hibernate.validator.constraints.Length;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -53,6 +46,50 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    List<Product> productList = new ArrayList<>();
+
+    /*@OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    List<Invoice> invoiceList = new ArrayList<>();
+
+    public List<Invoice> getInvoiceList() {
+        return invoiceList;
+    }
+
+    public void setInvoiceList(List<Invoice> invoiceList) {
+        this.invoiceList = invoiceList;
+    }
+
+    public void addInvoice(Invoice invoice) {
+        invoiceList.add(invoice);
+        invoice.setUser(this);
+    }
+
+    public void removeInvoice(Invoice invoice) {
+        invoiceList.remove(invoice);
+        invoice.setUser(null);
+    }*/
+
+    public void addProduct(Product product) {
+        productList.add(product);
+        product.setUser(this);
+    }
+
+    public void removeProduct(Product product) {
+        productList.remove(product);
+        product.setUser(null);
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     public void setId(int id) {
@@ -107,5 +144,16 @@ public class User {
         this.roles = roles;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

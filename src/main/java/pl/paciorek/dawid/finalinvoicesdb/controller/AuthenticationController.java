@@ -2,24 +2,30 @@ package pl.paciorek.dawid.finalinvoicesdb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
+import pl.paciorek.dawid.finalinvoicesdb.model.Product;
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
 import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
+import pl.paciorek.dawid.finalinvoicesdb.repository.UserRepository;
 import pl.paciorek.dawid.finalinvoicesdb.service.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
+
 
 @Controller
 public class AuthenticationController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -41,10 +47,42 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView home() {
+    public ModelAndView home(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+        Invoice invoice = new Invoice();
+        //Order order = new Order();
+        Product product = new Product();
+        String name = principal.getName();
+        User us = userService.getActiveUser(name);
+        modelAndView.addObject("invoice", invoice);
+        //modelAndView.addObject("order", order);
+        modelAndView.addObject("auth_user", us);
+        modelAndView.addObject("prod", product);
         modelAndView.addObject("products", productRepository.findAll());
+        modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/home", method = RequestMethod.POST)
+    public ModelAndView addProduct(@Valid Product product, BindingResult bindingResult, Principal principal, ModelMap modelMap) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (bindingResult.hasErrors()) {
+            modelAndView.addObject("successMessage", "Please correct the errors in form!");
+            modelMap.addAttribute("bindingResult", bindingResult);
+
+        }
+        String name = principal.getName();
+        User us = userService.getActiveUser(name);
+
+        us.getProductList().add(product);
+        modelAndView.addObject("user", us);
+        modelAndView.addObject("auth_user", us);
+        modelAndView.addObject("success", "The product has been successfully bought.");
+        modelAndView.addObject("products", productRepository.findAll());
+        modelAndView.setViewName("home");
+        for (Product p: us.getProductList()) {
+            System.out.println(p);
+        }
         return modelAndView;
     }
 
@@ -65,6 +103,5 @@ public class AuthenticationController {
         modelAndView.setViewName("register");
         return modelAndView;
     }
-
 
 }

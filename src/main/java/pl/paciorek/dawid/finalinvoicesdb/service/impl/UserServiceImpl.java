@@ -11,6 +11,7 @@ import pl.paciorek.dawid.finalinvoicesdb.service.UserService;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,6 +33,17 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    @Override
+    public User getActiveUser(String name) {
+        List<User> getUsers = userRepository.findAll();
+        for (User u: getUsers) {
+            if (u.getEmail().equals(name)) {
+                return u;
+            }
+        } return null;
+    }
+
 
     @Override
     public boolean isUserAlreadyPresent(User user) {
