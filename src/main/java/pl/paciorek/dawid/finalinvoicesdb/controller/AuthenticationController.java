@@ -7,9 +7,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+//import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
 import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
 import pl.paciorek.dawid.finalinvoicesdb.model.Product;
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
+//import pl.paciorek.dawid.finalinvoicesdb.model.Utils.OrderUtils;
+import pl.paciorek.dawid.finalinvoicesdb.model.Utils.OrderUtils;
+import pl.paciorek.dawid.finalinvoicesdb.repository.InvoiceRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.UserRepository;
 import pl.paciorek.dawid.finalinvoicesdb.service.UserService;
@@ -30,6 +34,9 @@ public class AuthenticationController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    InvoiceRepository invoiceRepository;
+
     @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
@@ -49,12 +56,12 @@ public class AuthenticationController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        Invoice invoice = new Invoice();
+        //Invoice invoice = new Invoice();
         //Order order = new Order();
         Product product = new Product();
         String name = principal.getName();
         User us = userService.getActiveUser(name);
-        modelAndView.addObject("invoice", invoice);
+        //modelAndView.addObject("invoice", invoice);
         //modelAndView.addObject("order", order);
         modelAndView.addObject("auth_user", us);
         modelAndView.addObject("prod", product);
@@ -80,9 +87,16 @@ public class AuthenticationController {
         modelAndView.addObject("success", "The product has been successfully bought.");
         modelAndView.addObject("products", productRepository.findAll());
         modelAndView.setViewName("home");
+        int sum = 0;
         for (Product p: us.getProductList()) {
             System.out.println(p);
+            sum += p.getPrice();
+            System.out.println(sum);
         }
+
+        Invoice invoice = new Invoice(sum, OrderUtils.PROGRESS.toString(), us);
+        System.out.println(invoice);
+        invoiceRepository.save(invoice);
         return modelAndView;
     }
 

@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.paciorek.dawid.finalinvoicesdb.model.Role;
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
+
 import pl.paciorek.dawid.finalinvoicesdb.repository.RoleRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.UserRepository;
 import pl.paciorek.dawid.finalinvoicesdb.service.UserService;

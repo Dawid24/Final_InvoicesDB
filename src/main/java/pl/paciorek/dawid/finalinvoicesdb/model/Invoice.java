@@ -18,7 +18,7 @@ public class Invoice {
 
     @NotNull(message = "Amount can not be empty")
     @Column(name = "amount")
-    private double amount;
+    private int amount;
 
     @NotNull(message = "Status can not be empty")
     @Column(name = "status")
@@ -27,6 +27,12 @@ public class Invoice {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Invoice(@NotNull(message = "Amount can not be empty") int amount, @NotNull(message = "Status can not be empty") String status, User user) {
+        this.amount = amount;
+        this.status = status;
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -40,7 +46,7 @@ public class Invoice {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

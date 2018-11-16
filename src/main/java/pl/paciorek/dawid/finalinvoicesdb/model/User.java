@@ -48,27 +48,23 @@ public class User {
         return id;
     }
 
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     List<Product> productList = new ArrayList<>();
 
     /*@OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     List<Invoice> invoiceList = new ArrayList<>();
-
     public List<Invoice> getInvoiceList() {
         return invoiceList;
     }
-
     public void setInvoiceList(List<Invoice> invoiceList) {
         this.invoiceList = invoiceList;
     }
-
     public void addInvoice(Invoice invoice) {
         invoiceList.add(invoice);
         invoice.setUser(this);
     }
-
     public void removeInvoice(Invoice invoice) {
         invoiceList.remove(invoice);
         invoice.setUser(null);
