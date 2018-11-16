@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.paciorek.dawid.finalinvoicesdb.model.Product;
+import pl.paciorek.dawid.finalinvoicesdb.repository.InvoiceRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.UserRepository;
 
@@ -14,6 +15,9 @@ public class AdminController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -29,6 +33,12 @@ public class AdminController {
     public String postsPage(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "users";
+    }
+
+    @GetMapping("/admin/invoices")
+    public String invoicesPage(Model model) {
+        model.addAttribute("invoices", invoiceRepository.findAll());
+        return "invoices";
     }
 
     @PostMapping("/admin/add")

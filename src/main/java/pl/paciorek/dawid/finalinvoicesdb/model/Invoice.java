@@ -34,6 +34,9 @@ public class Invoice {
         this.user = user;
     }
 
+    public Invoice() {
+    }
+
     public int getId() {
         return id;
     }

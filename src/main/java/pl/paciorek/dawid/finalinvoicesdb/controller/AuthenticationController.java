@@ -7,11 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-//import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
 import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
 import pl.paciorek.dawid.finalinvoicesdb.model.Product;
 import pl.paciorek.dawid.finalinvoicesdb.model.User;
-//import pl.paciorek.dawid.finalinvoicesdb.model.Utils.OrderUtils;
 import pl.paciorek.dawid.finalinvoicesdb.model.Utils.OrderUtils;
 import pl.paciorek.dawid.finalinvoicesdb.repository.InvoiceRepository;
 import pl.paciorek.dawid.finalinvoicesdb.repository.ProductRepository;
@@ -56,13 +54,9 @@ public class AuthenticationController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView home(Principal principal) {
         ModelAndView modelAndView = new ModelAndView();
-        //Invoice invoice = new Invoice();
-        //Order order = new Order();
         Product product = new Product();
         String name = principal.getName();
         User us = userService.getActiveUser(name);
-        //modelAndView.addObject("invoice", invoice);
-        //modelAndView.addObject("order", order);
         modelAndView.addObject("auth_user", us);
         modelAndView.addObject("prod", product);
         modelAndView.addObject("products", productRepository.findAll());
