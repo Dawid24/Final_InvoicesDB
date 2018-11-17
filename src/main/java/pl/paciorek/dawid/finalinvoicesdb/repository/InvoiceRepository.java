@@ -6,4 +6,5 @@ import pl.paciorek.dawid.finalinvoicesdb.model.Invoice;
 
 @Repository
 public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
+
 }

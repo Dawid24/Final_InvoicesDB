@@ -14,7 +14,7 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "invoice_id")
-    private int id;
+    private Long id;
 
     @NotNull(message = "Amount can not be empty")
     @Column(name = "amount")
@@ -37,11 +37,11 @@ public class Invoice {
     public Invoice() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -67,5 +67,15 @@ public class Invoice {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
